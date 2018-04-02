@@ -29,8 +29,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-    
-        //from study 01
+
         Spring2D test;//test Spring2D
         SpringPoint testSpringPoint;//test SpringPoint
         SpringCircle testSpringCircle;//test SpringCircle
@@ -43,21 +42,18 @@ class ofApp : public ofBaseApp{
         float stiffness = 0.2;//test value
         float damping = 0.8;//test value
     
-    
-        //from study 02
         //ColorScheme testScheme;//test ColorScheme
     
-        //from study 03
-        int const numOfRoutes = 6;//number of JumpRoutes to depict
-        int const numOfDivs = 6;//number of divisions in given JumpRoutes
-        float const xBleed = -65;
-        float const yBleed = 65;
+        int const numOfRoutes = 30;//number of JumpRoutes to depict
+        int const numOfDivs = 30;//number of divisions in given JumpRoutes
+        float const xBleed = 600;
+        float const yBleed = 600;
     
         vector<JumpRoute> routes;
     
         vector<SpringCircle> circles;//the acutal circles that move around the grid
-        float rSpringCircle = 50;//radius of each SpringCircles
-        float numSpringCircle = 100;//number of SpringPoints in each of the SpringCircles
+        float rSpringCircle = 30;//radius of each SpringCircles
+        float numSpringCircle = 25;//number of SpringPoints in each of the SpringCircles
     
 		
 };

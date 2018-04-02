@@ -28,4 +28,5 @@ public:
     
     void setPos(ofVec2f _pos);//set the position of the SpringCircle
     
+    
 };

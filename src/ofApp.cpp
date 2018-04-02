@@ -4,39 +4,41 @@
 void ofApp::setup(){
     ofBackground(255, 255, 255);
     
-    //from study 03
     ofHideCursor();
     
-    for(int i = 0; i < numOfRoutes; i++){
-        JumpRoute tempJumpRoute;
-        tempJumpRoute.setup(ofVec2f(0 - xBleed, i*ofGetHeight()/numOfRoutes) + yBleed, ofVec2f(ofGetWidth() + xBleed, i*ofGetHeight()/numOfRoutes + yBleed), numOfDivs);
-        tempJumpRoute.setTick(0);
-        routes.push_back(tempJumpRoute);
-        
-        SpringCircle tempSpringCircle;
-        tempSpringCircle.setup(routes[i].jumpPoint[0].pos, rSpringCircle, numSpringCircle);
-        circles.push_back(tempSpringCircle);
-        
-        
-        for(int j = 0; j < numOfDivs; j++){
-//            JumpRoute tempJumpRoute;
-//            tempJumpRoute.setup(ofVec2f(0 - xBleed, i*ofGetHeight()/numOfRoutes) + yBleed, ofVec2f(ofGetWidth() + xBleed, i*ofGetHeight()/numOfRoutes + yBleed), numOfDivs);
-//            tempJumpRoute.setTick(j);
-//            routes.push_back(tempJumpRoute);
-//
-//            SpringCircle tempSpringCircle;
-//            tempSpringCircle.setup(routes[i].jumpPoint[j].pos, rSpringCircle, numSpringCircle);
-//            circles.push_back(tempSpringCircle);
-            
+    for(int i = 0; i<numOfRoutes; i++){
+        for(int j = 0; j<numOfDivs; j++){
+            SpringCircle tempSpringCircle;
+            tempSpringCircle.setup(ofVec2f(i*3*ofGetHeight()/numOfRoutes - xBleed, j*3*ofGetHeight()/numOfDivs - yBleed), rSpringCircle, numSpringCircle);
+            circles.push_back(tempSpringCircle);
         }
         
-        
-        
-
-        
-        
-    
     }
+    
+//    for(int i = 0; i < numOfRoutes; i++){
+//        JumpRoute tempJumpRoute;
+//        tempJumpRoute.setup(ofVec2f(0 - xBleed, i*ofGetHeight()/numOfRoutes) + yBleed, ofVec2f(ofGetWidth() + xBleed, i*ofGetHeight()/numOfRoutes + yBleed), numOfDivs);
+//        tempJumpRoute.setTick(0);
+//        routes.push_back(tempJumpRoute);
+//        
+//        SpringCircle tempSpringCircle;
+//        tempSpringCircle.setup(routes[i].jumpPoint[0].pos, rSpringCircle, numSpringCircle);
+//        circles.push_back(tempSpringCircle);
+        
+        
+//        for(int j = 0; j < numOfDivs; j++){
+////            JumpRoute tempJumpRoute;
+////            tempJumpRoute.setup(ofVec2f(0 - xBleed, i*ofGetHeight()/numOfRoutes) + yBleed, ofVec2f(ofGetWidth() + xBleed, i*ofGetHeight()/numOfRoutes + yBleed), numOfDivs);
+////            tempJumpRoute.setTick(j);
+////            routes.push_back(tempJumpRoute);
+////
+////            SpringCircle tempSpringCircle;
+////            tempSpringCircle.setup(routes[i].jumpPoint[j].pos, rSpringCircle, numSpringCircle);
+////            circles.push_back(tempSpringCircle);
+//
+//        }
+    
+        
     
     //from study 02
     //testScheme.setupPalette();
@@ -53,10 +55,10 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    //from study 01
-        //testSpringCircle.update();
+    testSpringCircle.update();
+    //testSpringCircle.setPos(ofVec2f(mouseX, mouseY));
     
-    for(int i = 0; i < numOfRoutes; i++){
+    for(int i = 0; i < numOfRoutes*numOfDivs; i++){
         circles[i].update();
     }
 }
@@ -64,16 +66,14 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    //from study 03
-    for(int i = 0; i < numOfRoutes; i++){
+    for(int i = 0; i < numOfRoutes*numOfDivs; i++){
         //routes[i].draw();
         circles[i].drawSurface();
     }
     
-    //from study 02
     //testScheme.showColors();
     
-    //from study 01
+    
     //testSpringCircle.drawSurface();
 
 }
@@ -100,11 +100,12 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
-    //from study 03
-    for(int i = 0; i < numOfRoutes; i++){
-        routes[i].forward();
-        circles[i].setPos(routes[i].returnActiveJumpPointPos());
+    
+    testSpringCircle.setPos(ofVec2f(testSpringCircle.pos.x, testSpringCircle.pos.y));
+    for(int i = 0; i < numOfRoutes*numOfDivs; i++){
+        //routes[i].forward();
+        //circles[i].setPos(routes[i].returnActiveJumpPointPos());
+        circles[i].setPos(ofVec2f(circles[i].pos.x + rSpringCircle, circles[i].pos.y + rSpringCircle));
     }
 }
 
