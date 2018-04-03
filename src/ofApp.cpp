@@ -6,6 +6,14 @@ void ofApp::setup(){
     
     ofHideCursor();
     
+    for(int i = 0; i < totalSpringCircle; i++){
+        SpringCircle tempSpringCircle;
+        tempSpringCircle.setup(ofVec2f(ofRandom(-rSpringCircle, ofGetWidth() + rSpringCircle), -ofRandom(100, 150)), ofRandom(rSpringCircle - 10, rSpringCircle +10), numSpringCircle);
+        //circles.push_back(tempSpringCircle);
+    }
+    
+    
+    /*
     for(int i = 0; i<numOfRoutes; i++){
         for(int j = 0; j<numOfDivs; j++){
             SpringCircle tempSpringCircle;
@@ -14,6 +22,7 @@ void ofApp::setup(){
         }
         
     }
+    */
     
 //    for(int i = 0; i < numOfRoutes; i++){
 //        JumpRoute tempJumpRoute;
@@ -49,24 +58,58 @@ void ofApp::setup(){
     //ofHideCursor();//duplicate
     //test.setup(0.0, ofGetScreenWidth() / 2, mass, gravity, stiffness, damping);
     //testSpringPoint.setup();
-    testSpringCircle.setup(ofVec2f(mouseX, mouseY), rTestSpringCircle, numTestSpringCircle);
+    //testSpringCircle.setup(ofVec2f(mouseX, mouseY), rTestSpringCircle, numTestSpringCircle);
+    ofVec2f putMe;
+    putMe.set(ofGetWidth()/2, ofGetHeight()/2);
+    testSpringCircle.setup(putMe, rTestSpringCircle, numTestSpringCircle);
 
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     testSpringCircle.update();
-    //testSpringCircle.setPos(ofVec2f(mouseX, mouseY));
+    testSpringCircle.setPos(ofVec2f(mouseX, mouseY));
     
-    for(int i = 0; i < numOfRoutes*numOfDivs; i++){
+//    for(int i = 0; i < numOfRoutes*numOfDivs; i++){
+//        circles[i].update();
+//    }
+    
+    for(int i = 0; i < circles.size(); i++){
         circles[i].update();
     }
+    
+    eraseMe();
+    //regenerateMe();
+}
+
+void ofApp::eraseMe(){
+    for(int i = 0; i < circles.size(); i++){
+        //cout << circles[0].pos.y << endl;
+        if(circles[i].velocity > 2000){
+            //cout << "I'm deleting yo" << endl;
+            circles.erase(circles.begin());
+            
+            SpringCircle tempSpringCircle;
+            tempSpringCircle.setup(ofVec2f(ofRandom(-rSpringCircle, ofGetWidth() + rSpringCircle), -100), rSpringCircle, numSpringCircle);
+            circles.push_back(tempSpringCircle);
+        }
+    }
+    
+}
+
+void ofApp::regenerateMe(){
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    for(int i = 0; i < numOfRoutes*numOfDivs; i++){
+//    for(int i = 0; i < numOfRoutes*numOfDivs; i++){
+//        //routes[i].draw();
+//        circles[i].drawSurface();
+//    }
+    
+    for(int i = 0; i < circles.size(); i++){
         //routes[i].draw();
         circles[i].drawSurface();
     }
@@ -102,11 +145,18 @@ void ofApp::mouseDragged(int x, int y, int button){
 void ofApp::mousePressed(int x, int y, int button){
     
     testSpringCircle.setPos(ofVec2f(testSpringCircle.pos.x, testSpringCircle.pos.y));
-    for(int i = 0; i < numOfRoutes*numOfDivs; i++){
-        //routes[i].forward();
-        //circles[i].setPos(routes[i].returnActiveJumpPointPos());
-        circles[i].setPos(ofVec2f(circles[i].pos.x + rSpringCircle, circles[i].pos.y + rSpringCircle));
-    }
+    
+    SpringCircle tempSpringCircle;
+    ofVec2f tempVec;
+    tempVec.set(ofRandom(0, ofGetWidth()), ofRandom(-100, -150));
+    tempSpringCircle.setup(tempVec, ofRandom(rSpringCircle - 10, rSpringCircle +10), numSpringCircle);
+    circles.push_back(tempSpringCircle);
+    
+//    for(int i = 0; i < numOfRoutes*numOfDivs; i++){
+//        //routes[i].forward();
+//        //circles[i].setPos(routes[i].returnActiveJumpPointPos());
+//        circles[i].setPos(ofVec2f(circles[i].pos.x + rSpringCircle, circles[i].pos.y + rSpringCircle));
+//    }
 }
 
 //--------------------------------------------------------------
@@ -116,6 +166,9 @@ void ofApp::mouseReleased(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mouseEntered(int x, int y){
+    SpringCircle tempSpringCircle;
+    tempSpringCircle.setup(ofVec2f(ofRandom(-rSpringCircle, ofGetWidth() + rSpringCircle), -100), rSpringCircle, numSpringCircle);
+    circles.push_back(tempSpringCircle);
 
 }
 

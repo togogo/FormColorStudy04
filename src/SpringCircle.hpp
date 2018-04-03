@@ -25,8 +25,12 @@ public:
     void update();
     void draw();
     void drawSurface();//draws as one unified form
+    void eraseMe();//erase the SpringCircle when it's out of the screen
     
     void setPos(ofVec2f _pos);//set the position of the SpringCircle
+  
+    float gravity = 1.008;
+    float velocity = 1.0;
     
     
 };

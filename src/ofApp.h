@@ -29,11 +29,14 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
+        void eraseMe();//erase SpringCircle once out of the screen
+        void regenerateMe();//regenraate the SpringCircle that went ouf of the screen
+    
 
         Spring2D test;//test Spring2D
         SpringPoint testSpringPoint;//test SpringPoint
         SpringCircle testSpringCircle;//test SpringCircle
-        int numTestSpringCircle = 100;//test number of SpringPoints in SpringCircle
+        int numTestSpringCircle = 36;//test number of SpringPoints in SpringCircle
         float rTestSpringCircle = 200;//test radius of SpringCircle
     
         //float gravity = 10.0;//test value
@@ -44,16 +47,17 @@ class ofApp : public ofBaseApp{
     
         //ColorScheme testScheme;//test ColorScheme
     
-        int const numOfRoutes = 30;//number of JumpRoutes to depict
-        int const numOfDivs = 30;//number of divisions in given JumpRoutes
-        float const xBleed = 600;
-        float const yBleed = 600;
+        int const numOfRoutes = 5;//number of JumpRoutes to depict
+        int const numOfDivs = 5;//number of divisions in given JumpRoutes
+        float const xBleed = 60;
+        float const yBleed = 60;
     
-        vector<JumpRoute> routes;
+        //vector<JumpRoute> routes;
     
         vector<SpringCircle> circles;//the acutal circles that move around the grid
-        float rSpringCircle = 30;//radius of each SpringCircles
-        float numSpringCircle = 25;//number of SpringPoints in each of the SpringCircles
+        float totalSpringCircle = 10;
+        float rSpringCircle = 200;//radius of each SpringCircles
+        float numSpringCircle = 36;//number of SpringPoints in each of the SpringCircles
     
 		
 };
