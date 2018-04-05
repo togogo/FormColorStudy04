@@ -59,3 +59,22 @@ void ColorScheme::showColors(){
     mediBlues.drawPalette(ofVec2f(30, 200));
 
 }
+
+ofColor ColorScheme::returnRandColorFromRandPalette(){
+    ofColor returnMe;
+    int rand = (int)ofRandom(1, 5);
+    if(rand == 1){
+        returnMe = blueSunset.returnRandColor();
+    }else if(rand == 2){
+        returnMe = classicRetro.returnRandColor();
+    }else if(rand == 3){
+        returnMe = shimmeringBG.returnRandColor();
+    }else if(rand == 4){
+        returnMe = sunsetOverSwamp.returnRandColor();
+    }else if(rand == 5){
+        returnMe = mediBlues.returnRandColor();
+    }
+
+    return returnMe;
+    
+}

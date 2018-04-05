@@ -15,7 +15,10 @@ void SpringCircle::setup(ofVec2f _pos, float _r, int _num){
     numSpringPoint = _num;
     setCircle();
     
-    //instatinate 
+
+    
+    //set colors for SpringCircle
+
 }
 
 void SpringCircle::setCircle(){
@@ -28,7 +31,7 @@ void SpringCircle::setCircle(){
         ofVec2f tempPos;
         SpringPoint tempSP;
         tempSP.setup();
-        cout << tempPos.x << endl;
+        //cout << pos.x << endl;
         //instantiate the SpringPoints based on sin/cos functions, and r
         
         tempPos.x = pos.x + cos(TWO_PI / numSpringPoint * i) * r;
@@ -79,8 +82,10 @@ void SpringCircle::drawSurface(){
     //ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
     
     //third layer
-    ofSetColor(100, 200, 100);//temporary color
+    //ofSetColor(100, 200, 100);//temporary color
     //ofSetColor(0, 160, 233);//temporary color, cyan
+    ofSetColor(thirdLayerColor);
+    //ofSetColor(myColorScheme.returnRandColorFromRandPalette());
     ofBeginShape();
     for(int i = 0; i<sp.size(); i++){
         
@@ -89,7 +94,9 @@ void SpringCircle::drawSurface(){
     ofEndShape();
     
     //second layer
-    ofSetColor(200, 100, 200);//temporary color
+    //ofSetColor(200, 100, 200);//temporary color
+    ofSetColor(secondLayerColor);
+    //ofSetColor(myColorScheme.returnRandColorFromRandPalette());
     //ofSetColor(228, 0, 127);//temporary color, magenta
     ofBeginShape();
     for(int i = 0; i<sp.size(); i++){
@@ -99,7 +106,9 @@ void SpringCircle::drawSurface(){
     ofEndShape();
     
     //first layer
-    ofSetColor(200, 200, 100);//temporary color
+    //ofSetColor(200, 200, 100);//temporary color
+    ofSetColor(firstLayerColor);
+    //ofSetColor(myColorScheme.returnRandColorFromRandPalette());
     //ofSetColor(255, 241, 0);//temporary color, yellow
     ofBeginShape();
     for(int i = 0; i<sp.size(); i++){
@@ -111,6 +120,17 @@ void SpringCircle::drawSurface(){
 
 void SpringCircle::setPos(ofVec2f _pos){
     pos = _pos;
+}
+
+void SpringCircle::setThreeColors(ofColor _color1, ofColor _color2, ofColor _color3){
+    firstLayerColor = _color1;
+    secondLayerColor = _color2;
+    thirdLayerColor = _color3;
+}
+
+void SpringCircle::resetPhysics(){
+    float gravity = 1.008;
+    float velocity = 1.0;
 }
 
 

@@ -26,3 +26,8 @@ void ColorPalette::drawPalette(ofVec2f _pos){
         ofDrawCircle(_pos.x + i*15, _pos.y, paletteSize);
     }
 }
+
+//return random color
+ofColor ColorPalette::returnRandColor(){
+    return color[(int)ofRandom(0, color.size())];
+}

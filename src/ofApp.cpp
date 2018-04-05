@@ -4,6 +4,10 @@
 void ofApp::setup(){
     ofBackground(255, 255, 255);
     
+    
+    //load colors
+    myColorScheme.loadColors();
+    
     ofHideCursor();
     
     for(int i = 0; i < totalSpringCircle; i++){
@@ -47,13 +51,8 @@ void ofApp::setup(){
 //
 //        }
     
-        
-    
-    //from study 02
-    //testScheme.setupPalette();
-    //testScheme.loadColors();
-    
-    //from study 01
+
+
     
     //ofHideCursor();//duplicate
     //test.setup(0.0, ofGetScreenWidth() / 2, mass, gravity, stiffness, damping);
@@ -91,6 +90,7 @@ void ofApp::eraseMe(){
             
             SpringCircle tempSpringCircle;
             tempSpringCircle.setup(ofVec2f(ofRandom(-rSpringCircle, ofGetWidth() + rSpringCircle), -100), rSpringCircle, numSpringCircle);
+            tempSpringCircle.setThreeColors(myColorScheme.returnRandColorFromRandPalette(), myColorScheme.returnRandColorFromRandPalette(), myColorScheme.returnRandColorFromRandPalette());
             circles.push_back(tempSpringCircle);
         }
     }
@@ -99,6 +99,8 @@ void ofApp::eraseMe(){
 
 void ofApp::regenerateMe(){
 
+    //circles[i].resetPhysics();
+    //circles[i].setPos(ofVec2f(ofRandom(-rSpringCircle, ofGetWidth() + rSpringCircle), -100));
 }
 
 //--------------------------------------------------------------
@@ -114,7 +116,7 @@ void ofApp::draw(){
         circles[i].drawSurface();
     }
     
-    //testScheme.showColors();
+    //myColorScheme.showColors();
     
     
     //testSpringCircle.drawSurface();
@@ -146,10 +148,18 @@ void ofApp::mousePressed(int x, int y, int button){
     
     testSpringCircle.setPos(ofVec2f(testSpringCircle.pos.x, testSpringCircle.pos.y));
     
+    
+//    ofColor tempFirstLayerColor = myColorScheme.returnRandColorFromRandPalette();
+//    ofColor tempSecondLayerColor = myColorScheme.returnRandColorFromRandPalette();
+//    ofColor tempThirdLayerColor = myColorScheme.returnRandColorFromRandPalette();
+    
+    
     SpringCircle tempSpringCircle;
     ofVec2f tempVec;
     tempVec.set(ofRandom(0, ofGetWidth()), ofRandom(-100, -150));
     tempSpringCircle.setup(tempVec, ofRandom(rSpringCircle - 10, rSpringCircle +10), numSpringCircle);
+    tempSpringCircle.setThreeColors(myColorScheme.returnRandColorFromRandPalette(), myColorScheme.returnRandColorFromRandPalette(), myColorScheme.returnRandColorFromRandPalette());
+    //tempSpringCircle.setThreeColors(myColorScheme.blueSunset.returnRandColor(), myColorScheme.blueSunset.returnRandColor(), myColorScheme.blueSunset.returnRandColor());
     circles.push_back(tempSpringCircle);
     
 //    for(int i = 0; i < numOfRoutes*numOfDivs; i++){

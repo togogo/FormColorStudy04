@@ -6,8 +6,8 @@
 #include "Spring2D.hpp"
 #include "SpringPoint.hpp"
 #include "SpringCircle.hpp"
-//#include "ColorPalette.hpp"
-//#include "ColorScheme.hpp"
+#include "ColorPalette.hpp"
+#include "ColorScheme.hpp"
 
 
 class ofApp : public ofBaseApp{
@@ -46,6 +46,7 @@ class ofApp : public ofBaseApp{
         float damping = 0.8;//test value
     
         //ColorScheme testScheme;//test ColorScheme
+        ColorScheme myColorScheme;
     
         int const numOfRoutes = 5;//number of JumpRoutes to depict
         int const numOfDivs = 5;//number of divisions in given JumpRoutes

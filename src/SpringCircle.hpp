@@ -11,6 +11,7 @@
 #include "ofMain.h"
 #include "SpringPoint.hpp"
 
+
 class SpringCircle {
     
 public:
@@ -28,9 +29,17 @@ public:
     void eraseMe();//erase the SpringCircle when it's out of the screen
     
     void setPos(ofVec2f _pos);//set the position of the SpringCircle
+    
+    void setThreeColors(ofColor _color1, ofColor _color2, ofColor _color3);
+    
+    void resetPhysics();
   
     float gravity = 1.008;
     float velocity = 1.0;
+
+    ofColor firstLayerColor;
+    ofColor secondLayerColor;
+    ofColor thirdLayerColor;
     
     
 };

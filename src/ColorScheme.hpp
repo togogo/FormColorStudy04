@@ -19,13 +19,13 @@ public:
     ColorPalette mediBlues;
 
 
-
+    int numPalettes = 5;
     vector<int> numSamples;
 
-    
-    void setupPalette();
+    void setupPalette();//depricated...
     void loadColors();//load all colors available
     void showColors();//show all loaded color pallettes
     
+    ofColor returnRandColorFromRandPalette();
     
 };
